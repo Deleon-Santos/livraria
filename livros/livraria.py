@@ -65,6 +65,7 @@ while True:
                 continue
         except ValueError:
             print('Informe um valor numérico')
+    
     while True:
         try:
             ano = int(input("Informe o ano de lançamento do Livro: "))
