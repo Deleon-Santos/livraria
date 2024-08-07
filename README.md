@@ -4,11 +4,10 @@
 ## Sumário
 1. [Introdução](#introdução)
 2. [Requisitos do Sistema](#requisitos-do-sistema)
-3. [Estrutura do Código](#estrutura-do-código)
-4. [Descrição das Funções](#descrição-das-funções)
-5. [Fluxo de Execução](#fluxo-de-execução)
-6. [Exemplo de Uso](#exemplo-de-uso)
-7. [Conclusão](#conclusão)
+3. [Descrição das Funções](#descrição-das-funções)
+4. [Fluxo de Execução](#fluxo-de-execução)
+5. [Exemplo de Uso](#exemplo-de-uso)
+6. [Conclusão](#conclusão)
 
 ## Introdução
 O sistema foi desenvolvido para armazenar informações de livros utilizando filtros de entradas e um banco de dados integrado ao código. Este documento visa fornecer uma visão geral do sistema, incluindo a estrutura do código, a descrição das funções e um exemplo de uso.
@@ -19,96 +18,6 @@ O sistema foi desenvolvido para armazenar informações de livros utilizando fil
 ## Requisitos do Sistema
 - Python 3.x
 - Biblioteca SQLite3
-
-## Estrutura do Código
-
-```python
-import sqlite3 as bd
-
-lista=[]
-
-def conectar():
-    conex= bd.connect("livraria")#conectar com um banco de dados com o nome "livraria"
-    curs= conex.cursor()#o cursor recebe a conexao para manipular o bd
-    return curs,conex
-
-def gravar():
-    cursor, conexao = conectar()
-    cursor.execute("""
-        create table if not exists livro(
-            id_livro integer primary key autoincrement, 
-            nome_livro text, 
-            preco_livro real, 
-            ano_livro text
-        )
-    """)
-    cursor.execute("insert into livro (nome_livro, preco_livro, ano_livro) VALUES(?,?,?)", (lista[0], lista[1], lista[2]))
-    conexao.commit()
-    mostrar(cursor, conexao)  # chama a função visualizar cadastro
-
-def mostrar(cursor, conexao):
-    cursor, conexao = conectar()
-    cursor.execute("select * from livro")
-    
-    print("ID               Livro                              Preço                  Ano")
-    for row in cursor.fetchall():
-        linha = row
-        if linha:  # formatação para imprimir o resultado como uma tabela
-            print(f'{linha[0]:<8}   {linha[1]:<40} {linha[2]:<20.2f} {linha[3]:>5}')
-    # fecha o banco após encerrar a consulta
-    cursor.close()
-    conexao.close()  
-
-# Início da Aplicação
-print('******************************LIVRARIA****************************************')
-while True:
-    while True:
-        nome = input("Qual livro deseja adicionar? ")
-        if nome:
-            nome = nome.title()
-            lista.insert(0, nome)
-            break
-        else:
-            print("Informe o nome")
-            continue
-    
-    while True:
-        try:
-            preco = float(input("Informe o preço do Livro: "))
-            if preco:
-                lista.insert(1, preco)
-                break        
-            else:
-                print("Informe o preço")
-                continue
-        except ValueError:
-            print('Informe um valor numérico')
-    
-    while True:
-        try:
-            ano = int(input("Informe o ano de lançamento do Livro: "))
-            ano = str(ano)
-            
-            if len(ano) == 4:
-                lista.insert(2, ano)
-                gravar()
-                break
-            else:
-                print("Informe o ano no formato (aaaa)")
-        except ValueError:
-            print("Informe o ano no formato aaaa")
-
-    finalize = input("\n'S'-sair ou 'C'-continuar: ")
-    finalize = finalize.upper()[0]
-    
-    if finalize in "SC":
-        if finalize == "S":
-            break
-        else:
-            continue
-    else:
-        continue
-```
 
 ## Descrição das Funções
 
@@ -130,7 +39,7 @@ Consulta todos os registros da tabela `livro` e os imprime em formato de tabela.
 
 ## Exemplo de Uso
 ```python
-# Saída esperada ao adicionar um livro:
+#          Saída esperada no console ao adicionar um livro:
 
 ******************************LIVRARIA****************************************
 Qual livro deseja adicionar? Python Programming
