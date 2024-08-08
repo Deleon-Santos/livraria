@@ -1,5 +1,5 @@
 
-# Documentação do Sistema de Cadastro de Livros
+# Sistema de Cadastro de Livros com banco de dados integrado SQLite3
 
 ## Sumário
 1. [Introdução](#introdução)
