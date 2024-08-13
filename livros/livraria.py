@@ -47,7 +47,7 @@ while True:
     while True:
         nome=input("Qual livro deseja adicionar? ")
         if nome:
-            nome=nome.title()
+            nome=nome.title()#insere maiusculas na primeira letra de nome e sobrenome
             lista.insert(0,nome)
             break
         else:
@@ -80,7 +80,7 @@ while True:
         except ValueError:
             print("Informe o ano no formato aaaa")
 
-    finalize=input("""\n'S'-sair ou 'C'-continuar: """)
+    finalize=input("""\n'S'-sair ou 'C'-continuar: """)#pode se encerrado precionando "s" para sair
     finalize=finalize.upper()[0]
     
     if finalize in "SC":
@@ -91,6 +91,6 @@ while True:
     else:
         continue
         
-
+#finaly
 
 
