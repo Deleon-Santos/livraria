@@ -58,7 +58,7 @@ while True:
         try:
             preco=float(input("Informe o preço do Livro: "))
             if preco:
-                lista.insert(1,preco)
+                lista.insert(1,preco)#estou inserindo o valor numa posição especifica
                 break        
             else:
                 print("Informe o preço")
